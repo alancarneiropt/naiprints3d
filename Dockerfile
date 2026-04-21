@@ -19,4 +19,4 @@ RUN chmod +x docker-entrypoint.sh
 EXPOSE 8001
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD ["sh", "-c", "gunicorn naiprints3d.wsgi:application --bind 0.0.0.0:${PORT:-8001} --workers 3 --timeout 120"]
+CMD ["sh", "-c", "gunicorn naiprints3d.wsgi:application --bind 0.0.0.0:${PORT:-8001} --workers 3 --timeout 120 --access-logfile - --error-logfile - --capture-output --log-level info"]
