@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ seo.title }}</title>
+    <meta name="description" content="{{ seo.description }}">
+    <meta property="og:title" content="{{ seo.title }}">
+    <meta property="og:description" content="{{ seo.description }}">
+    <meta property="og:image" content="{{ seo.og_image }}">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_PT">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="navbar" id="topo">
+        <div class="container nav-inner">
+            <a href="#topo" class="brand" aria-label="{{ site_name }}">
+                <img src="{% static 'images/logo-naiprints.png' %}" alt="{{ site_name }}">
+            </a>
+            <nav>
+                <a href="#sobre">Sobre</a>
+                <a href="#produtos">Produtos</a>
+                <a href="#categorias">Categorias</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <a class="btn btn-primary nav-cta" href="#contacto">Falar connosco</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero section">
+            <div class="container hero-grid">
+                <div class="reveal">
+                    <p class="eyebrow">Impressao 3D profissional</p>
+                    <h1>{{ hero_title }}</h1>
+                    <p class="hero-text">{{ hero_description }}</p>
+                    <div class="hero-actions">
+                        <a href="#contacto" class="btn btn-primary">Entrar em contacto</a>
+                        <a href="#produtos" class="btn btn-secondary">Ver produtos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="sobre">
+            <div class="container reveal">
+                <h2>Sobre Nós</h2>
+                <p class="section-text">
+                    Somos apaixonados pelo mundo da impressao 3D e dedicamo-nos a transformar ideias em realidade. Criamos produtos personalizados, funcionais e decorativos com foco na qualidade, inovacao e atencao ao detalhe.
+                </p>
+                <p class="section-text">
+                    Na Naiprints3D, cada peca e produzida com precisao e cuidado, camada por camada, garantindo um resultado unico e a medida de cada cliente. Trabalhamos tanto com produtos prontos como com projetos por encomenda, adaptados as suas necessidades.
+                </p>
+                <p class="section-text">
+                    Se tem uma ideia, nos damos-lhe forma.
+                </p>
+            </div>
+        </section>
+
+        <section class="section section-alt" id="produtos">
+            <div class="container">
+                <h2 class="reveal">Produtos em destaque</h2>
+                <div class="product-grid">
+                    {% for product in products %}
+                        <article class="card reveal">
+                            <button class="product-image-btn" type="button" aria-label="Ampliar imagem de {{ product.name }}">
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                {% else %}
+                                    <img src="{{ product.image_url|default:'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80' }}" alt="{{ product.name }}">
+                                {% endif %}
+                            </button>
+                            <div class="card-body">
+                                <h3>{{ product.name }}</h3>
+                                <p>{{ product.short_description }}</p>
+                                <div class="card-footer card-footer-end">
+                                    <a href="#contacto" class="card-cta">Quero esse! 😍</a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="categorias">
+            <div class="container">
+                <h2 class="reveal">Categorias</h2>
+                <div class="category-grid">
+                    {% for category in categories %}
+                        <div class="category-card reveal">
+                            <i class="fa-solid {% if category.icon %}{{ category.icon }}{% else %}fa-cube{% endif %}"></i>
+                            <span>{{ category.name }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt" id="vantagens">
+            <div class="container">
+                <h2 class="reveal">Porque escolher-nos</h2>
+                <div class="feature-grid">
+                    <div class="feature-card reveal"><i class="fa-solid fa-fingerprint"></i><h3>Produtos personalizados</h3></div>
+                    <div class="feature-card reveal"><i class="fa-solid fa-layer-group"></i><h3>Impressao com qualidade</h3></div>
+                    <div class="feature-card reveal"><i class="fa-solid fa-bezier-curve"></i><h3>Design moderno</h3></div>
+                    <div class="feature-card reveal"><i class="fa-solid fa-gears"></i><h3>Producao por encomenda</h3></div>
+                    <div class="feature-card reveal"><i class="fa-solid fa-magnifying-glass"></i><h3>Atencao ao detalhe</h3></div>
+                    <div class="feature-card reveal"><i class="fa-solid fa-truck-fast"></i><h3>Entrega rapida</h3></div>
+                    <div class="feature-card reveal"><i class="fa-solid fa-headset"></i><h3>Apoio ao cliente</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt" id="como-funciona">
+            <div class="container">
+                <h2 class="reveal">Como funciona</h2>
+                <div class="steps-grid">
+                    {% for step in how_it_works %}
+                        <div class="step-card reveal">
+                            <span class="step-number">0{{ forloop.counter }}</span>
+                            <p>{{ step }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="testemunhos">
+            <div class="container">
+                <h2 class="reveal">Testemunhos</h2>
+                <div class="testimonial-grid">
+                    {% for testimonial in testimonials %}
+                        <blockquote class="testimonial-card reveal">
+                            <div class="testimonial-head">
+                                <img class="testimonial-avatar" src="{{ testimonial.avatar }}" alt="Foto de {{ testimonial.name }}">
+                                <div class="testimonial-user">
+                                    <strong>{{ testimonial.name }}</strong>
+                                    <span>{{ testimonial.role }}</span>
+                                </div>
+                            </div>
+                            <p>"{{ testimonial.text }}"</p>
+                        </blockquote>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta" id="contacto">
+            <div class="container cta-box reveal">
+                <h2>Tens uma ideia? Nos damos forma em 3D.</h2>
+                <p>Esta vitrine mostra o nosso trabalho. Para detalhes, personalizacao e encomendas, fala diretamente connosco nas redes e canais oficiais.</p>
+                <div class="cta-actions">
+                    {% for social in social_links %}
+                        {% if social.platform == "email" %}
+                            <a
+                                class="btn {% if social.is_primary_cta %}btn-primary{% else %}btn-secondary{% endif %} email-copy-btn"
+                                href="#"
+                                data-email="naiprints3d@gmail.com"
+                            >
+                                <i class="{{ social.icon }}"></i> Copiar email
+                            </a>
+                        {% else %}
+                            <a class="btn {% if social.is_primary_cta %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ social.url }}" target="_blank" rel="noreferrer">
+                                <i class="{{ social.icon }}"></i> {{ social.label }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a class="floating-whatsapp" href="https://wa.me/351914073718" target="_blank" rel="noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+    <div id="imageLightbox" class="lightbox" aria-hidden="true">
+        <button id="lightboxClose" class="lightbox-close" type="button" aria-label="Fechar imagem ampliada">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightboxImage" src="" alt="Imagem ampliada do produto">
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>{{ site_name }}</h3>
+                <p>Marca especializada em produtos de impressao 3D com foco em inovacao, utilidade e personalizacao.</p>
+            </div>
+            <div>
+                <h4>Redes sociais</h4>
+                <div class="social-links">
+                    {% for social in social_links %}
+                        {% if social.platform == "email" %}
+                            <a href="#" class="email-copy-btn" data-email="naiprints3d@gmail.com" aria-label="Copiar email"><i class="{{ social.icon }}"></i></a>
+                        {% else %}
+                            <a href="{{ social.url }}" target="_blank" rel="noreferrer" aria-label="{{ social.label }}"><i class="{{ social.icon }}"></i></a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <a href="{% url 'landing:privacy_policy' %}">Politica de privacidade</a>
+                <a href="{% url 'landing:terms_conditions' %}">Termos e condicoes</a>
+            </div>
+        </div>
+        <p class="copyright">© {% now "Y" %} {{ site_name }}. Todos os direitos reservados.</p>
+    </footer>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

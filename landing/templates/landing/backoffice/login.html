@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Backoffice | NaiPrints3D</title>
+    <link rel="stylesheet" href="{% static 'css/backoffice/backoffice.css' %}">
+</head>
+<body class="backoffice-body">
+    <main class="auth-wrapper">
+        <section class="auth-card">
+            <h1>Backoffice NaiPrints3D</h1>
+            <p>Inicia sessão para gerir os produtos em destaque.</p>
+            <form method="post" class="auth-form">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <p class="error-msg">Utilizador ou palavra-passe inválidos.</p>
+                {% endif %}
+                <label for="id_username">Utilizador</label>
+                {{ form.username }}
+                <label for="id_password">Palavra-passe</label>
+                {{ form.password }}
+                <button type="submit" class="btn-primary">Entrar</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

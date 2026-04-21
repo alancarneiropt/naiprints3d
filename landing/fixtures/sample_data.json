@@ -1,0 +1,186 @@
+[
+  {
+    "model": "landing.category",
+    "pk": 1,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "name": "Decoracao",
+      "slug": "decoracao",
+      "description": "Pecas decorativas modernas para casa e escritorio.",
+      "icon": "fa-wand-magic-sparkles",
+      "order": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "landing.category",
+    "pk": 2,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "name": "Organizacao",
+      "slug": "organizacao",
+      "description": "Solucoes para arrumacao e produtividade.",
+      "icon": "fa-box-open",
+      "order": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "landing.category",
+    "pk": 3,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "name": "Personalizados",
+      "slug": "personalizados",
+      "description": "Projetos unicos feitos por encomenda.",
+      "icon": "fa-pen-ruler",
+      "order": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "landing.product",
+    "pk": 1,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "category": 2,
+      "name": "Organizador de secretaria modular",
+      "slug": "organizador-secretaria-modular",
+      "short_description": "Organizador moderno com modulos para canetas, clips e acessorios.",
+      "description": "Ideal para manter a tua mesa limpa e com estilo.",
+      "image": "",
+      "price": "24.90",
+      "is_featured": true,
+      "is_active": true,
+      "order": 1
+    }
+  },
+  {
+    "model": "landing.product",
+    "pk": 2,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "category": 2,
+      "name": "Suporte de telemovel ergonomico",
+      "slug": "suporte-telemovel-ergonomico",
+      "short_description": "Suporte com inclinacao ideal para escritorio ou mesa de cabeceira.",
+      "description": "Compatibilidade com diversos modelos de smartphone.",
+      "image": "",
+      "price": "14.90",
+      "is_featured": true,
+      "is_active": true,
+      "order": 2
+    }
+  },
+  {
+    "model": "landing.product",
+    "pk": 3,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "category": 1,
+      "name": "Luminaria geometrica decorativa",
+      "slug": "luminaria-geometrica-decorativa",
+      "short_description": "Peca decorativa com design contemporaneo para ambiente premium.",
+      "description": "Pode ser personalizada em varias cores e acabamentos.",
+      "image": "",
+      "price": "29.90",
+      "is_featured": true,
+      "is_active": true,
+      "order": 3
+    }
+  },
+  {
+    "model": "landing.galleryitem",
+    "pk": 1,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "title": "Projeto personalizado para escritorio",
+      "image": "",
+      "category": 2,
+      "order": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "landing.sociallink",
+    "pk": 1,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "platform": "whatsapp",
+      "label": "WhatsApp",
+      "url": "https://wa.me/351914073718",
+      "icon": "fa-brands fa-whatsapp",
+      "is_primary_cta": true,
+      "is_active": true,
+      "order": 1
+    }
+  },
+  {
+    "model": "landing.sociallink",
+    "pk": 2,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "platform": "instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/naiprints3d_?igsh=dXdzZnUxMWo2b21j&utm_source=qr",
+      "icon": "fa-brands fa-instagram",
+      "is_primary_cta": false,
+      "is_active": true,
+      "order": 2
+    }
+  },
+  {
+    "model": "landing.sociallink",
+    "pk": 3,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "platform": "facebook",
+      "label": "Facebook",
+      "url": "https://facebook.com/naiprints3d",
+      "icon": "fa-brands fa-facebook-f",
+      "is_primary_cta": false,
+      "is_active": true,
+      "order": 3
+    }
+  },
+  {
+    "model": "landing.sociallink",
+    "pk": 4,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "platform": "tiktok",
+      "label": "TikTok",
+      "url": "https://tiktok.com/@naiprints3d",
+      "icon": "fa-brands fa-tiktok",
+      "is_primary_cta": false,
+      "is_active": true,
+      "order": 4
+    }
+  },
+  {
+    "model": "landing.sociallink",
+    "pk": 5,
+    "fields": {
+      "created_at": "2026-04-21T10:00:00Z",
+      "updated_at": "2026-04-21T10:00:00Z",
+      "platform": "email",
+      "label": "Email",
+      "url": "mailto:naiprints3d@gmail.com",
+      "icon": "fa-regular fa-envelope",
+      "is_primary_cta": false,
+      "is_active": true,
+      "order": 5
+    }
+  }
+]

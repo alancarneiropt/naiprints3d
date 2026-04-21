@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice | Produtos em Destaque</title>
+    <link rel="stylesheet" href="{% static 'css/backoffice/backoffice.css' %}">
+</head>
+<body class="backoffice-body">
+    <div class="bo-shell">
+        <header class="bo-header">
+            <div>
+                <h1>Produtos em destaque</h1>
+                <p>Gerir vitrine principal do site.</p>
+            </div>
+            <div class="bo-actions">
+                <a href="{% url 'landing:backoffice_product_create' %}" class="btn-primary">Novo produto</a>
+                <a href="{% url 'landing:backoffice_logout' %}" class="btn-secondary">Sair</a>
+            </div>
+        </header>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flash-msg">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <section class="bo-card">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th>Ativo</th>
+                            <th>Destaque</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.category.name }}</td>
+                                <td>{{ product.is_active|yesno:"Sim,Não" }}</td>
+                                <td>{{ product.is_featured|yesno:"Sim,Não" }}</td>
+                                <td class="actions">
+                                    <a href="{% url 'landing:backoffice_product_edit' product.id %}" class="btn-small">Editar</a>
+                                    <a href="{% url 'landing:backoffice_product_toggle_featured' product.id %}" class="btn-small {% if product.is_featured %}btn-warn{% else %}btn-success{% endif %}">
+                                        {% if product.is_featured %}Remover destaque{% else %}Colocar em destaque{% endif %}
+                                    </a>
+                                    <form method="post" action="{% url 'landing:backoffice_product_delete' product.id %}" class="delete-product-form" data-product-name="{{ product.name }}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn-small btn-danger">Excluir</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5">Sem produtos cadastrados no momento.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <script>
+        document.querySelectorAll(".delete-product-form").forEach((form) => {
+            form.addEventListener("submit", (event) => {
+                const productName = form.dataset.productName || "este produto";
+                const confirmed = window.confirm(`Tens a certeza que queres excluir "${productName}"? Esta ação não pode ser desfeita.`);
+                if (!confirmed) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

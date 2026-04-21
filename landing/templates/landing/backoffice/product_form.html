@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }} | Backoffice</title>
+    <link rel="stylesheet" href="{% static 'css/backoffice/backoffice.css' %}">
+</head>
+<body class="backoffice-body">
+    <div class="bo-shell">
+        <header class="bo-header">
+            <div>
+                <h1>{{ page_title }}</h1>
+                <p>Preenche os dados para atualizar a vitrine.</p>
+            </div>
+            <div class="bo-actions">
+                <a href="{% url 'landing:backoffice_dashboard' %}" class="btn-secondary">Voltar</a>
+            </div>
+        </header>
+
+        <section class="bo-card">
+            <form method="post" enctype="multipart/form-data" class="bo-form">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="field">
+                    <label for="{{ form.category.id_for_label }}">Categoria</label>
+                    {{ form.category }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.name.id_for_label }}">Nome</label>
+                    {{ form.name }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.slug.id_for_label }}">Slug (opcional)</label>
+                    {{ form.slug }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.short_description.id_for_label }}">Descrição curta</label>
+                    {{ form.short_description }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.description.id_for_label }}">Descrição completa</label>
+                    {{ form.description }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.image.id_for_label }}">Imagem</label>
+                    <div class="upload-quick" id="quickUploadBox" tabindex="0">
+                        <input type="file" name="image" accept="image/*" id="id_image" class="upload-input">
+                        <p class="upload-title">Arrasta uma imagem aqui</p>
+                        <p class="upload-subtitle">ou cola com Ctrl+V</p>
+                        <p class="upload-subtitle">também podes clicar para escolher ficheiro</p>
+                    </div>
+                    <div id="uploadPreview" class="upload-preview" aria-live="polite"></div>
+                </div>
+                <div class="field inline">
+                    <label>{{ form.is_featured }} Produto em destaque</label>
+                    <label>{{ form.is_active }} Produto ativo</label>
+                </div>
+                <div class="field">
+                    <label for="{{ form.order.id_for_label }}">Ordem</label>
+                    {{ form.order }}
+                </div>
+                <button type="submit" class="btn-primary">Guardar produto</button>
+            </form>
+        </section>
+    </div>
+    <script src="{% static 'js/backoffice-upload.js' %}"></script>
+</body>
+</html>
