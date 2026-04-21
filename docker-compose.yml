@@ -6,15 +6,15 @@ services:
     env_file:
       - .env
     ports:
-      - "8000:8000"
+      - "8001:8001"
     environment:
-      SQLITE_PATH: /app/data/db.sqlite3
+      PORT: "8001"
+      SQLITE_PATH: /app/media/db.sqlite3
+      REQUIRE_SQLITE_FILE: "True"
     volumes:
-      - sqlite_data:/app/data
       - media_data:/app/media
       - static_data:/app/staticfiles
 
 volumes:
-  sqlite_data:
   media_data:
   static_data:

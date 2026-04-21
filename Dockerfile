@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 RUN chmod +x docker-entrypoint.sh
 
-EXPOSE 8000
+EXPOSE 8001
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD ["gunicorn", "naiprints3d.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120"]
+CMD ["sh", "-c", "gunicorn naiprints3d.wsgi:application --bind 0.0.0.0:${PORT:-8001} --workers 3 --timeout 120"]

@@ -3,8 +3,10 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
+from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
+import os
 
 from .forms import FeaturedProductForm
 from .models import Category, GalleryItem, Product, SocialLink
@@ -127,7 +129,18 @@ def terms_conditions(request):
 
 
 def healthz(request):
-    return JsonResponse({"status": "ok"})
+    db_ok = os.path.isfile(settings.SQLITE_PATH)
+    media_ok = os.path.isdir(settings.MEDIA_ROOT) and os.access(settings.MEDIA_ROOT, os.W_OK)
+    status_code = 200 if db_ok and media_ok else 503
+    return JsonResponse(
+        {
+            "status": "ok" if status_code == 200 else "error",
+            "sqlite_path": settings.SQLITE_PATH,
+            "db_file_exists": db_ok,
+            "media_writable": media_ok,
+        },
+        status=status_code,
+    )
 
 
 class BackofficeLoginView(LoginView):

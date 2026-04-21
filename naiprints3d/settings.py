@@ -21,6 +21,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "landing.middleware.DatabaseAvailabilityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -50,6 +51,7 @@ WSGI_APPLICATION = "naiprints3d.wsgi.application"
 ASGI_APPLICATION = "naiprints3d.asgi.application"
 
 SQLITE_PATH = os.getenv("SQLITE_PATH", str(BASE_DIR / "db.sqlite3"))
+REQUIRE_SQLITE_FILE = os.getenv("REQUIRE_SQLITE_FILE", "True").lower() == "true"
 
 DATABASES = {
     "default": {
