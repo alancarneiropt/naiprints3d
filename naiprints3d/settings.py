@@ -50,7 +50,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "naiprints3d.wsgi.application"
 ASGI_APPLICATION = "naiprints3d.asgi.application"
 
-SQLITE_PATH = os.getenv("SQLITE_PATH", str(BASE_DIR / "db.sqlite3"))
+DEFAULT_SQLITE_PATH = "/app/media/db.sqlite3" if not DEBUG else str(BASE_DIR / "db.sqlite3")
+SQLITE_PATH = os.getenv("SQLITE_PATH", DEFAULT_SQLITE_PATH)
 REQUIRE_SQLITE_FILE = os.getenv("REQUIRE_SQLITE_FILE", "True").lower() == "true"
 
 DATABASES = {

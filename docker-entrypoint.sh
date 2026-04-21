@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-SQLITE_FILE="${SQLITE_PATH:-/app/data/db.sqlite3}"
+SQLITE_FILE="${SQLITE_PATH:-/app/media/db.sqlite3}"
 SQLITE_DIR="$(dirname "$SQLITE_FILE")"
 
 log() {
@@ -28,6 +28,11 @@ log "BOOT: Iniciando preflight do container"
 log "CONFIG: PORT=${PORT:-8001} | SQLITE_PATH=$SQLITE_FILE | REQUIRE_SQLITE_FILE=${REQUIRE_SQLITE_FILE:-True}"
 
 run_step "Verificar diretorio do SQLite ($SQLITE_DIR)" test -d "$SQLITE_DIR"
+
+if [ ! -d "$SQLITE_DIR" ]; then
+  log "DEBUG: Conteudo de /app:"
+  ls -la /app || true
+fi
 
 if [ "${REQUIRE_SQLITE_FILE:-True}" = "True" ]; then
   run_step "Verificar ficheiro SQLite ($SQLITE_FILE)" test -f "$SQLITE_FILE"
